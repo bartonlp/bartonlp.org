@@ -1,0 +1,31 @@
+{
+  "siteDomain": "bartonlp.org",
+  "siteName": "BartonLP",
+  "title": "Barton Home",
+  "mainTitle": "Home Page",
+  "path": "/var/www/html",
+  "className": "SiteClass",
+  "copyright": "Barton Phillips",
+  "author": "Barton Phillips",
+  "desc": "My interesting new site",
+  "keywords": "c,c++,javascript,php,mysql",
+  "masterdb": "barton",
+  "dbinfo": {
+    "host": "localhost",
+    "user": "barton",
+    "password": "7098653",
+    "database": "barton",
+    "engine": "mysqli"
+  },
+  "headFile": "includes/head.i.php",
+  "bannerFile": "includes/banner.i.php",
+  "footerFile": "includes/footer.i.php",
+  "count": true,
+  "countMe": true,
+  "trackerImg1": "/images/blp-image.png",
+  "trackerImg2": "/images/146624.png",
+  "myUri": "https://bartonphillips.net/myUri.json",
+  "EMAILADDRESS": "bartonphillips@gmail.com",
+  "EMAILRETURN": "bartonphillips@gmail.com",
+  "EMAILFROM": "bartonphillips@gmail.com"
+}
