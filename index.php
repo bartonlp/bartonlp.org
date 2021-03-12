@@ -2,8 +2,9 @@
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 ErrorClass::setNoEmailErrs(true);
+//vardump("site", $_site);
 $S = new $_site->className($_site);
-
+//vardump("S", $S);
 $h->css = <<<EOF
 <style>
 .item { text-align: center; }
@@ -23,7 +24,7 @@ EOF;
 
 echo <<<EOF
 $top
-<p class="item">Here we go again.</p>
+<p class="item">This is 'bartonlp.org'.</p>
 $footer
 EOF;
 

@@ -1,0 +1,6 @@
+# This is the .gitignore file for /var/www/html
+# we will ignore the following
+/other
+/test
+tysonweb
+

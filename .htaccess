@@ -1,0 +1,87 @@
+Header set Access-Control-Allow-Origin *
+order allow,deny
+allow from all
+
+SetEnv SITELOAD /var/www/vendor/bartonlp/site-class/includes
+SetEnv SITELOADNAME /var/www/vendor/bartonlp/site-class/includes/siteload.php
+
+FileETag All
+
+# BEGIN EXPIRES
+<IfModule mod_expires.c>
+  ExpiresActive On
+<Files *.php>
+  ExpiresByType text/html A0
+</Files>
+  ExpiresDefault "access plus 10 days"
+  ExpiresByType text/css A0
+  ExpiresByType text/plain A0
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType application/x-javascript A0
+  ExpiresByType application/javascript A0
+  ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
+# END EXPIRES
+
+AddType application/x-javascript .js
+AddType text/css .css
+AddType text/xml .xml
+AddType text/cache-manifest .manifest
+AddType application/x-font-woff .woff
+AddType application/x-font-ttf .ttf
+
+AddDefaultCharset UTF-8
+
+# Do compression of the followin types
+
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+
+# 11/3/10 hack attempts
+RewriteEngine on
+# Don't allow these robots
+RewriteCond %{HTTP_USER_AGENT} "baiduspider" [NC]
+RewriteRule (.*) - [F,L]
+
+# direct robots.txt to robots.php
+RewriteRule ^robots\.txt$ robots.php [L,NC]
+RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
+
+# rewrite the address of csstest.css to tracker.php?csstest
+# RewriteRule ^csstest\.css(.*)(.*)$ tracker.php?$2&csstest [L,QSA]
+RewriteRule ^csstest-(.*)\.css$ tracker.php?id=$1&csstest [L,QSA]
+
+# Do compression of the followin types
+
+AddOutputFilterByType DEFLATE \
+  "application/atom+xml" \
+  "application/javascript" \
+  "application/x-javascript" \
+  "application/json" \
+  "application/ld+json" \
+  "application/manifest+json" \
+  "application/rdf+xml" \
+  "application/rss+xml" \
+  "application/schema+json" \
+  "application/vnd.geo+json" \
+  "application/vnd.ms-fontobject" \
+  "application/x-font-ttf" \
+  "application/x-web-app-manifest+json" \
+  "application/xhtml+xml" \
+  "application/xml" \
+  "font/opentype" \
+  "image/svg+xml" \
+  "image/x-icon" \
+  "text/cache-manifest" \
+  "text/css" \
+  "text/html" \
+  "text/javascript" \
+  "text/plain" \
+  "text/vtt" \
+  "text/x-component" \
+  "text/xml" \
+  "image/png" \
+  "image/jpg" \
+  "image/gif" 
+

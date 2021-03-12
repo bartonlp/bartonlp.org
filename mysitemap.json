@@ -1,30 +1,77 @@
+/*
+ * THIS IS A SPECIAL json. It allows comments via the 'sitload.php'.
+ * Normally json_decode() would fail if there were any comments.
+ * 
+ * This is mysitemap.json for bartonlp.org. The 'siteload.php' file has
+ * been modified to remove comments like this or // or #.
+ * You can put almost anything into this file as long as it does not
+ * have double slashes or a pound sign that is not escaped.
+ * 'siteName' is used by the tracking software.
+ * Any of these items can be referenced in code as '$this->name' like
+ * '$this->siteDomain'. You can use these in the include/ file like
+ * head.i.php etc.
+ * The 'title' is usually used in the html <title>$this->title</title>.
+ * 'className' can be used if you have a derived class from
+ * 'StiteClass', then you would have:
+ * $S = new $_site->className($_site->className);
+ * 'copyright', 'author', 'desc', 'keywords' can all be used on the
+ * include/ files.
+ * 'masterdb' is the main database that all of the counter and tracker
+ * data will be put into. This may be different from the
+ * 'dbinfo->database' which can be different if you want to do special
+ * things in a seperate database.
+ * 'dbinfo' is an object used by the database software.
+ * The three files 'headFile', 'bannerFile' and 'footerFile' are
+ * normally in the include/ directory, but they can really be anywhere.
+ * These three name have links to the actual location of the
+ * corresponding files.
+ * There are several special flags that can be set to modify the
+ * behavior of the 'SiteClass' software these are:
+ * 'nodb': don't do any database actions. This can also be done by just
+ * not having the 'dbinfo' object.
+ * 'noTrack': don't do 'tracking'.
+ * 'count': if true we do counting if false of not included we don't
+ * count.
+ * 'countMe': if true we cound each time our browser loads the site.
+ * The two items 'trackerImg1' and 'trackerImg2' are locations on the
+ * https://www.bartonphillips.net server where the images are located.
+ * If the name starts with a / then that server is used otherwise you
+ * can supply a relitive link the this server or an explicit link to
+ * another server.
+ * 'myUrl': can either be a string, and array or the name and location
+ * of a json file.
+ * 'EMAIL...' tags are for your email informationl
+ *
+ * You can also use # or // for comments for one line comments and
+ * inline comments. 
+ */
 {
-  "siteDomain": "bartonlp.org",
-  "siteName": "BartonLP",
-  "title": "Barton Home",
-  "mainTitle": "Home Page",
-  "path": "/var/www/html",
-  "className": "SiteClass",
-  "copyright": "Barton Phillips",
-  "author": "Barton Phillips",
-  "desc": "My interesting new site",
-  "keywords": "c,c++,javascript,php,mysql",
-  "masterdb": "barton",
-  "dbinfo": {
+  "siteDomain": "bartonlp.org", // Our domain name
+  "siteName": "BartonlpOrg", // this is the site name that will be used in analysis
+  "title": "Barton Home", // the title used in head.i.php 
+  "mainTitle": "Home of <b>bartonlp.org</b>", // could be used in banner.i.php
+  "path": "/var/www/html", 
+  "className": "SiteClass", // the default is SiteClass. If this is something else that class will be used.
+  "copyright": "Barton Phillips", // copyright holder
+  "author": "Barton Phillips", 
+  "desc": "My interesting new site", // could be used in the meta description.
+  "keywords": "c,c++,javascript,php,mysql", // could be used in the meta keywords.
+  "masterdb": "barton", // the master database where all of the SiteClass tracking and counting info goes.
+  "dbinfo": { // IF you have this then you will use the database facilities of SiteClass
     "host": "localhost",
     "user": "barton",
     "password": "7098653",
     "database": "barton",
-    "engine": "mysqli"
+    "engine": "mysqli" // the engine to use
   },
-  "headFile": "includes/head.i.php",
+  "headFile": "includes/head.i.php",  // *File items refer to the head, banner, and footer to use.
   "bannerFile": "includes/banner.i.php",
   "footerFile": "includes/footer.i.php",
-  "count": true,
-  "countMe": true,
-  "trackerImg1": "/images/blp-image.png",
+  "count": true, // if true do SiteClass counting
+  "countMe": true, // if true count me. Uses myUri to figure out if it is me or not via ip address.
+  "trackerImg1": "/images/blp-image.png", // /image/.. will get the image from bartonphillips.net.
   "trackerImg2": "/images/146624.png",
-  "myUri": "https://bartonphillips.net/myUri.json",
+  "myUri": "https://bartonphillips.net/myUri.json", // get the urls from this location. This could be a string or an array
   "EMAILADDRESS": "bartonphillips@gmail.com",
   "EMAILRETURN": "bartonphillips@gmail.com",
   "EMAILFROM": "bartonphillips@gmail.com"
