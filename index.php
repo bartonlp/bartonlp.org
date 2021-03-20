@@ -1,7 +1,6 @@
 <?php
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
-ErrorClass::setNoEmailErrs(true);
 //vardump("site", $_site);
 $S = new $_site->className($_site);
 //vardump("S", $S);

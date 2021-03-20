@@ -61,7 +61,7 @@
     "host": "localhost",
     "user": "barton",
     "password": "7098653",
-    "database": "barton",
+    "database": "bartonphillips", // we will use bartonphillips because it has the members table.
     "engine": "mysqli" // the engine to use
   },
   "headFile": "includes/head.i.php",  // *File items refer to the head, banner, and footer to use.
