@@ -10,14 +10,10 @@ $lastmod = date("M j, Y H:i", getlastmod());
 return <<<EOF
 <style>
 .social {
-  text-align: center;
-  margin-bottom: 1em;
-}
-.icon-button {
-  font-size: 1.5em;
+        text-align: center;
+        margin-bottom: 1em;
 }
 </style>
-
 <!--
   This div has the 'twitter', 'facebook' icons and links.
   It uses "FontAwesome" from the "https://bartonphillips.net/css/allnatural/social/font/"
@@ -44,11 +40,8 @@ return <<<EOF
   Copyright &copy; $this->copyright
 </address>
 <address>
-Barton Phillips<br>
-$this->address<br>
-<a href='mailto:bartonphillips@gmail.com'>
-  bartonphillips@gmail.com
-</a>
+$this->author at $this->address<br>
+<a href='mailto:$this->EMAILADDRESS'>$this->EMAILADDRESS</a>
 </address>
 </div>
 {$arg['msg']}

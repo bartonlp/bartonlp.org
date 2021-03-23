@@ -43,17 +43,20 @@
  * 'EMAIL...' tags are for your email informationl
  *
  * You can also use # or // for comments for one line comments and
- * inline comments. 
+ * inline comments.
+ * BLP 2021-03-20 -- This is also used in the 'bartonlp' directory for
+ * its 'index.php'. 'bartonlp' does NOT have a mysitemap.json.
  */
 {
   "siteDomain": "bartonlp.org", // Our domain name
   "siteName": "BartonlpOrg", // this is the site name that will be used in analysis
-  "title": "Barton Home", // the title used in head.i.php 
+  "title": "Bartonlp.org", // the title used in head.i.php 
   "mainTitle": "Home of <b>bartonlp.org</b>", // could be used in banner.i.php
   "path": "/var/www/html", 
   "className": "SiteClass", // the default is SiteClass. If this is something else that class will be used.
   "copyright": "Barton Phillips", // copyright holder
-  "author": "Barton Phillips", 
+  "author": "Barton Phillips",
+  "address": "New Bern, North Carolina",
   "desc": "My interesting new site", // could be used in the meta description.
   "keywords": "c,c++,javascript,php,mysql", // could be used in the meta keywords.
   "masterdb": "barton", // the master database where all of the SiteClass tracking and counting info goes.

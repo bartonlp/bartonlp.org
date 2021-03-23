@@ -30,11 +30,12 @@ return <<<EOF
 {$arg['meta']}
   <!-- CSS -->
   <link rel="stylesheet" href="https://bartonphillips.net/css/blp.css">
+  <link rel="stylesheet" href="fonts.css">
   <!-- css is not css but a link to tracker via .htaccess RewriteRule. -->
   <link rel="stylesheet" href="/csstest-{$this->LAST_ID}.css" title="blp test">
   {$arg['link']}
   <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
 var lastId = $this->LAST_ID;
   </script>
