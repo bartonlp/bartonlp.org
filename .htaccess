@@ -49,8 +49,10 @@ RewriteRule ^robots\.txt$ robots.php [L,NC]
 RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
 
 # rewrite the address of csstest.css to tracker.php?csstest
-# RewriteRule ^csstest\.css(.*)(.*)$ tracker.php?$2&csstest [L,QSA]
 RewriteRule ^csstest-(.*)\.css$ tracker.php?id=$1&csstest [L,QSA]
+
+RewriteRule ^.*/.*$ - [F,L]
+RewriteRule "^(PHP_ERROR.*|composer.*|mysitemap.*|ps|wp-password.*)$" - [F,L]
 
 # Do compression of the followin types
 

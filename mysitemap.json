@@ -51,7 +51,7 @@
   "siteDomain": "bartonlp.org", // Our domain name
   "siteName": "BartonlpOrg", // this is the site name that will be used in analysis
   "title": "Bartonlp.org", // the title used in head.i.php 
-  "mainTitle": "Home of <b>bartonlp.org</b>", // could be used in banner.i.php
+  "mainTitle": "<h1>Home of <b>bartonlp.org</b></h1>", // could be used in banner.i.php
   "path": "/var/www/html", 
   "className": "SiteClass", // the default is SiteClass. If this is something else that class will be used.
   "copyright": "Barton Phillips", // copyright holder
