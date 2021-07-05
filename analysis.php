@@ -1,1 +1,1 @@
-../tysonweb/analysis.php
+../bartonphillipsnet/analysis.php

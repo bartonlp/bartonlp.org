@@ -1,1 +1,1 @@
-../tysonweb/webstats.php
+../bartonphillipsnet/webstats.php
