@@ -74,7 +74,7 @@
   "countMe": true, // if true count me. Uses myUri to figure out if it is me or not via ip address.
   "trackerImg1": "/images/blp-image.png", // /image/.. will get the image from bartonphillips.net.
   "trackerImg2": "/images/146624.png",
-  "myUri": "https://bartonphillips.net/myUri.json", // get the urls from this location. This could be a string or an array
+  //"myUri": "https://bartonphillips.net/myUri.json", // get the urls from this location. This could be a string or an array
   "EMAILADDRESS": "bartonphillips@gmail.com",
   "EMAILRETURN": "bartonphillips@gmail.com",
   "EMAILFROM": "bartonphillips@gmail.com"
