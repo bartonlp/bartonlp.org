@@ -63,7 +63,7 @@
   "dbinfo": { // IF you have this then you will use the database facilities of SiteClass
     "host": "localhost",
     "user": "barton",
-    "password": "7098653",
+    //"password": "7098653",
     "database": "bartonphillips", // we will use bartonphillips because it has the members table.
     "engine": "mysqli" // the engine to use
   },
@@ -74,7 +74,6 @@
   "countMe": true, // if true count me. Uses myUri to figure out if it is me or not via ip address.
   "trackerImg1": "/images/blp-image.png", // /image/.. will get the image from bartonphillips.net.
   "trackerImg2": "/images/146624.png",
-  //"myUri": "https://bartonphillips.net/myUri.json", // get the urls from this location. This could be a string or an array
   "EMAILADDRESS": "bartonphillips@gmail.com",
   "EMAILRETURN": "bartonphillips@gmail.com",
   "EMAILFROM": "bartonphillips@gmail.com"
