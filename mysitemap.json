@@ -63,7 +63,6 @@
   "dbinfo": { // IF you have this then you will use the database facilities of SiteClass
     "host": "localhost",
     "user": "barton",
-    //"password": "7098653",
     "database": "bartonphillips", // we will use bartonphillips because it has the members table.
     "engine": "mysqli" // the engine to use
   },

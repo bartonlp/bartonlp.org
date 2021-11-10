@@ -42,10 +42,11 @@ EOF;
 echo <<<EOF
 $top
 <div class="item">
+<h3>This file is at <b>/var/www/html</b></h3>
+
 <div class="desktop">We think you are using a mouse as your pointer device.</div>
 <div class="phone">We think you are using a phone or tablet with a touch screen.</div>
-<div>Our main Home Page is at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a>.<br>
-Please visit us there.</div>
+<div>Our main Home Page is at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a> Please visit us there.</div>.
 </div>
 $footer
 EOF;
