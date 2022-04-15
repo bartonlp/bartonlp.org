@@ -66,6 +66,15 @@
     "database": "bartonphillips", // we will use bartonphillips because it has the members table.
     "engine": "mysqli" // the engine to use
   },
+  "errorMode": {
+    "development": true, // development automatically sets email to true.
+                         // If development is true then noEmail will be
+                         // set to true unless noEmail is set to false!
+                         // Only false not null or just missing.
+    "noEmail": null,   // Set it to null will not affect the true above which sets it to true also.
+    "noHtml": false,
+    "noOutput": false
+  },
   "headFile": "includes/head.i.php",  // *File items refer to the head, banner, and footer to use.
   "bannerFile": "includes/banner.i.php",
   "footerFile": "includes/footer.i.php",

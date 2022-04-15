@@ -2,7 +2,6 @@
 // This is for the bartonlp.org domain.
 
 $_site = require_once(getenv("SITELOADNAME"));
-ErrorClass::setDevelopment(true);
 $S = new $_site->className($_site);
 
 // A function to do a recursive glob()
@@ -66,7 +65,6 @@ $h->doctype =<<<EOF
 EOF;
 
 $h->css = <<<EOF
-<style>
 .item { text-align: center; }
 /* This is like <hr> */
 .item::after {
@@ -94,14 +92,12 @@ $h->css = <<<EOF
     display: none;
   }
 }
-</style>
 EOF;  
 
 $h->script =<<<EOF
-  <!-- USE ximage.js which understands http://bartonphillips.org:8080 -->
   <script src="https://bartonphillips.net/js/yimage.js"></script>
   <!-- PasoRobles2011 is symlinked to /storage/Pictures/PasoRobles2011 -->
-  <script>dobanner("PasoRobles2011/*.JPG", {recursive: 'no', size: '100', mode: "rand"});</script>
+  <script>dobanner("PasoRobles2011/*.JPG", "Trip to Paso Robles 2011", {recursive: 'no', size: '100', mode: "rand"});</script>
 EOF;
 
 [$top, $footer] = $S->getPageTopBottom($h);
