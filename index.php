@@ -46,7 +46,7 @@ if($_GET['path']) {
   // Turn the array into a string of lines with a \n
 
   foreach($x as $v) {
-    $banner_photos .= "http://bartonlp.org/$v\n";
+    $banner_photos .= "https://bartonlp.org/$v\n";
   }
 
   $banner_photos = rtrim($banner_photos, "\n");

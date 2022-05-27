@@ -32,7 +32,6 @@
  * 'noTrack': don't do 'tracking'.
  * 'count': if true we do counting if false of not included we don't
  * count.
- * 'countMe': if true we cound each time our browser loads the site.
  * The two items 'trackerImg1' and 'trackerImg2' are locations on the
  * https://www.bartonphillips.net server where the images are located.
  * If the name starts with a / then that server is used otherwise you
@@ -75,11 +74,10 @@
     "noHtml": false,
     "noOutput": false
   },
-  "headFile": "includes/head.i.php",  // *File items refer to the head, banner, and footer to use.
-  "bannerFile": "includes/banner.i.php",
-  "footerFile": "includes/footer.i.php",
+  "headFile": "/var/www/bartonphillips.com/includes/head.i.php",  // *File items refer to the head, banner, and footer to use.
+  "bannerFile": "/var/www/bartonphillips.com/includes/banner.i.php",
+  "footerFile": "/var/www/bartonphillips.com/includes/footer.i.php",
   "count": true, // if true do SiteClass counting
-  "countMe": true, // if true count me. Uses myUri to figure out if it is me or not via ip address.
   "trackerImg1": "/images/blp-image.png", // /image/.. will get the image from bartonphillips.net.
   "trackerImg2": "/images/146624.png",
   "EMAILADDRESS": "bartonphillips@gmail.com",
