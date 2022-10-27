@@ -48,7 +48,7 @@ RewriteRule ^robots\.txt$ robots.php [L,NC]
 RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
 
 # rewrite the address of csstest.css to tracker.php?csstest
-RewriteRule ^csstest-(.*)\.css$ https://bartonphillips.net/tracker.php?id=$1&csstest [L,QSA]
+RewriteRule ^csstest-(.*)\.css$ https://bartonlp.com/otherpages/tracker.php?id=$1&page=csstest [L,QSA]
 RewriteRule "^(mysitemap.*|includes/.*\.php)$" - [F,L]
 
 # Do compression of the followin types
