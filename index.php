@@ -1,14 +1,26 @@
 <?php
 // This is for the bartonlp.org domain.
+// I am using AltoRouter which routes '/' to altorouter.php which maps '/' to index.php.
+// You can always enter /index.php which will load the file directly.
+// For this to run under 'apache' we would need to edit our '.htaccess' file and add:
+//  # This group is for altorouter. The first rewrite is so '/' goes to altorouter.
+//  RewriteRule ^$ altorouter.php [L]
+//  # Then everything that isn't a file, line /test goes to altorouter.
+//  RewriteCond %{REQUEST_FILENAME} !-f
+//  RewriteRule . altorouter.php [L]
+// Get it with 'composer require altorouter/altorouter'
+// Get it at https://github.com/dannyvankooten/AltoRouter
 
 $_site = require_once(getenv("SITELOADNAME"));
-$S = new $_site->className($_site);
+$S = new SiteClass($_site);
 
-// BLP 2021-06-08 -- Set the DOCTYPE to have a message before the type
+//$h = new stdClass;
 
-$h->doctype =<<<EOF
+
+// preheadcomment goes before DOCTYPE.
+$h->preheadcomment = <<<EOF
 <!-- This is bartonlp.org at /var/www/html -->
-<!DOCTYPE html>
+<!-- This uses AltoRouter. https://github.com/dannyvankooten/AltoRouter -->
 EOF;
 
 $h->css = <<<EOF
@@ -43,8 +55,10 @@ EOF;
 
 $h->script =<<<EOF
   <script src="https://bartonphillips.net/js/ximage.js"></script>
-  <script>dobanner("PhotosFromHPenvy/PasoRobles2011/*.JPG", "Trip to Paso Robles 2011", {recursive: 'no', size: '100', mode: "rand"});</script>
+  <script>dobanner("PhotosFromHPenvy/BonnieAndMe/*.png", "Bonnie & Me", {recursive: 'no', size: '100', mode: "rand"});</script>
 EOF;
+
+$h->banner = "<h1>Something New</h1>";
 
 [$top, $footer] = $S->getPageTopBottom($h);
 
@@ -56,6 +70,9 @@ $top
 <div class="desktop">We think you are using a mouse as your pointer device.</div>
 <div class="phone">We think you are using a phone or tablet with a touch screen.</div>
 <div>Our main Home Page is at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a> Please visit us there.</div>.
+<p>I am using AltoRouter. Try <a href="/test">https://bartonlp.org/test</a><br>
+There are several pages you can also try from the locatin bar: <b>/getip</b>, <b>/contactus/{name}</b>, <b>/finduser/{name}/{id}</b>.<br>
+There are two names and ids in the database they are: <b>Barton</b> with id <b>1</b> and <b>Bonnie</b> with id <b>2</b>.</p>
 </div>
 <div id="show"></div>
 $footer

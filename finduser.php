@@ -1,5 +1,5 @@
 <?php
-// Used by AltoRouter Demo  '/test' (test.php).
+// This Demo goes with the altorouter.php and the AltoRouter class.
 // To make altorouter work you need to add the following to the .htaccess
 //  # This group is for altorouter. The first rewrite is so '/' goes to altorouter.
 //  RewriteRule ^$ altorouter.php [L]
@@ -14,17 +14,28 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new SiteClass($_site);
 
-$h->preheadcomment = "<!-- Part of AltoRouter Demo. Using SiteClass -->";
-$h->title = "Get Ip";
-$h->banner = "<h1>Get My Ip</h1>";
+$h->preheadcomment = "<!-- Part of AltoRoute Demo -->";
+$h->title = 'Find User Demo';
+$h->banner = "<h1>$h->title</h1>";
+
 [$top, $footer] = $S->getPageTopBottom($h);
 
-$ip = $_SERVER['REMOTE_ADDR'];
+$users = [['Barton', 1], ['Bonnie', 2]];
+
+$result = "Sorry we did not fine person '$name' with id '$id'";
+
+foreach($users as [$k, $v]) {
+  if($k == $name && $v == $id) {
+    $result = "We found 'name'=$name and 'id'=$id";
+    break;
+  }
+}
 echo <<<EOF
 $top
 <hr>
-<p>Your IP Address is: $ip</p>
+<h1>$result</h1>
 <hr>
 $footer
 EOF;
-
+               
+                  

@@ -1,13 +1,14 @@
-Header set Access-Control-Allow-Origin *
+# This is the .htaccess file for https://bartonlp.org. 
+
+Options +Includes
+FileETag All
+AddDefaultCharset UTF-8
 # Apache2 2.4 uses Require
 Require all granted
-
+Header set Access-Control-Allow-Origin *
 SetEnv SITELOADNAME /var/www/vendor/bartonlp/site-class/includes/siteload.php
 
-FileETag All
-
 # BEGIN EXPIRES
-<IfModule mod_expires.c>
   ExpiresActive On
 <Files *.php>
   ExpiresByType text/html A0
@@ -21,9 +22,9 @@ FileETag All
   ExpiresByType application/x-javascript A0
   ExpiresByType application/javascript A0
   ExpiresByType application/x-icon "access plus 1 year"
-</IfModule>
 # END EXPIRES
 
+AddType text/html .php
 AddType application/x-javascript .js
 AddType text/css .css
 AddType text/xml .xml
@@ -31,29 +32,32 @@ AddType text/cache-manifest .manifest
 AddType application/x-font-woff .woff
 AddType application/x-font-ttf .ttf
 
-AddDefaultCharset UTF-8
-
-# Do compression of the followin types
-
-AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
-
+# BEGIN RewriteRules
 # 11/3/10 hack attempts
 RewriteEngine on
 # Don't allow these robots
 RewriteCond %{HTTP_USER_AGENT} "baiduspider" [NC]
 RewriteRule (.*) - [F,L]
-
-# direct robots.txt to robots.php
+# direct robots.txt to robots.php and Sitemap.xml to sitemap.php
 RewriteRule ^robots\.txt$ robots.php [L,NC]
 RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
-
 # rewrite the address of csstest.css to tracker.php?csstest
 RewriteRule ^csstest-(.*)\.css$ https://bartonlp.com/otherpages/tracker.php?id=$1&page=csstest [L,QSA]
-RewriteRule "^(mysitemap.*|includes/.*\.php)$" - [F,L]
+# Don't let people look at mysitemap.json
+RewriteRule "^mysitemap\.json$" - [F,L]
+# This group is for altorouter. The first rewrite is so '/' goes to altorouter.
+RewriteRule ^$ altorouter.php [L]
+# Then everything that isn't a file, line /test goes to altorouter.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . altorouter.php [L]
+# END RewriteRules
 
-# Do compression of the followin types
-
+# Do compression of the following types
 AddOutputFilterByType DEFLATE \
+  "text/html" \
+  "text/plain" \
+  "text/xml" \
+  "text/css" \
   "application/atom+xml" \
   "application/javascript" \
   "application/x-javascript" \
@@ -83,4 +87,3 @@ AddOutputFilterByType DEFLATE \
   "image/png" \
   "image/jpg" \
   "image/gif" 
-
