@@ -23,43 +23,43 @@ $router = new AltoRouter();
 // Do Routing
 
 $router->map('GET', '/', function() {
-  global $h, $b;
   require('index.php');
 });
 
 $router->map('GET', '/getip', function() {
-  global $h, $b;
   require('getmyip.php');
 });
 
 $router->map('GET', '/contactus', function() {
-  global $h, $b;  
   $subject = "NO INFO PASSED";
   require("contact.php");
 });
           
 $router->map('GET', '/contactus/[a:subject]', function($y) {
-  global $h, $b;  
   $subject = urldecode($y['subject']);
   require("contact.php");
 });
 
 $router->map('GET', '/test', function() {
-  global $h, $b;  
   require("test.php");
 });
 
-$router->map('GET', '/test/[*:xyz]', function($y) {
-  global $h, $b;  
-  $data = file_get_contents("php://input");
-  $xyz = urldecode($y['xyz']);
-  echo "<h1>This is test</h1><p>{$xyz}</p>";
+$router->map('GET', '/test/[*:subject]', function($y) {
+  //$data = file_get_contents("php://input");
+  $subject = urldecode($y['subject']);
+  echo "<h1>This is test</h1><p>{$subject}</p>";
+});
+
+$router->map('GET', '/test/[*:subject]/[*:name]', function($y) {
+  //$data = file_get_contents("php://input");
+  $subject = urldecode($y['subject']);
+  $name = urldecode($y['name']);
+  echo "<h1>This is test</h1><p>{$subject}, {$name}</p>";
 });
 
 // GET. If you enter https://bartonlp.org/{name}/{id} at the location bar
 
 $router->map('GET', '/finduser/[a:name]/[i:id]', function($x) {
-  global $h, $b;  
   $name = $x['name'];
   $id = $x['id'];
   require("finduser.php");
@@ -68,12 +68,10 @@ $router->map('GET', '/finduser/[a:name]/[i:id]', function($x) {
 // POSTS
 
 $router->map('POST', '/test', function() {
-  global $h, $b;  
   $subject = $_POST['subject'];
-  $subject2 = $_POST['subject2'];
   $name = $_POST['name'];
-  echo "TEST: subject=$subject, subject2=$subject2, name=$name\n";
-  //require("test2.php");
+  //$title = "<h1>Hi There</h1>";
+  require("test2.php");
 });
 
 // POST test/{subject}
@@ -85,12 +83,9 @@ $router->map('POST', '/test', function() {
 $router->map('POST', '/test/[*:sub]', function($x) {
   $subject = urldecode($x['sub']);
   $extra = json_decode(file_get_contents("php://input"));
-  $name = $_POST["name"];
-
-  if($name) $subject .= ", $name";
-  elseif($extra->name) $subject .= ", $extra->name";
-
-  echo "<h1>This is test</h1><p>$subject</p>\n";
+  if($extra->name) $subject .= ", $extra->name";
+  $title = "<h1>Hi There</h1>";
+  require("test2.php");
 });
 
 // POST finduser. If via 'test' (test.php) then we will get the values from $_POST.
@@ -103,7 +98,6 @@ $router->map('POST', '/test/[*:sub]', function($x) {
 // Then the info is in $POST as 'Content-Type': 'application/x-www-form-urlencoded' seems to be the default.
 
 $router->map('POST', '/finduser', function() {
-  global $h, $b;  
   $data = json_decode(file_get_contents("php://input"));
 
   if($_POST) {

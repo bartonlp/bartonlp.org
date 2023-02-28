@@ -21,11 +21,11 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new SiteClass($_site);
 
-$h->title = "Part of AltoRouter Demo";
-$h->banner = "<h1>$h->title</h1>";
-$h->preheadcomment = "<!-- Using AltoRouter. Using SiteClass -->";
+$S->title = "Part of AltoRouter Demo";
+$S->banner = "<h1>$S->title</h1>";
+$S->preheadcomment = "<!-- Using AltoRouter. Using SiteClass -->";
 
-$b->inlineScript = <<<EOF
+$S->b_inlineScript = <<<EOF
 // Show source button
 
 $("#but1").on("click", function() {
@@ -89,7 +89,10 @@ $("#postit").on("click", function() {
     data: {junk: "WhatTheHell"}, // I can pass data up in addition to stuff
     type: "post",
     success: function(data) {
-      $("#postithere").html(data);
+      //$("#postithere").html(data);
+      $("#postithere").html("<iframe width='100%'></ifram>");
+      let iframe = document.querySelector("#postithere iframe");
+      iframe.srcdoc = data;
     },
     error: function(err) {
       console.log(`POST ERR: \${err}`);
@@ -113,13 +116,16 @@ $("#fetchit").on("click", function() {
   })
   .then(data => data.text())
   .then(data => {
-    $("#fetchithere").html(data);
+    $("#fetchithere").html("<iframe width='100%'></iframe>");
+    //let iframe = $("#fetchithere iframe");
+    let iframe = document.querySelector("#fetchithere iframe");
+    iframe.srcdoc = data;
   })
   .catch(err => console.log(`ERR: ${err}`));
 });
 EOF;
 
-$h->css = <<<EOF
+$S->css = <<<EOF
 input { font-size: 25px; }
 input[type="submit"] { border-radius: 5px; }
 #fileinfo, #altoinfo { display: none; }
@@ -127,7 +133,7 @@ input[type="submit"] { border-radius: 5px; }
 .border { padding: 10px; width: 600px; border: 1px solid black; border-radius: 5px; margin-bottom: 10px; }
 EOF;
 
-$h->script =<<<EOF
+$S->h_script =<<<EOF
 <!-- Get the syntaxhightlighter code and the theme.css -->
 <script src="https://bartonphillips.net/js/syntaxhighlighter.js"></script>
 <link rel='stylesheet' href="https://bartonphillips.net/css/theme.css">
@@ -136,7 +142,7 @@ EOF;
 $file = escapeltgt(file_get_contents("test.php"));
 $altofile = escapeltgt(file_get_contents("altorouter.php"));
 
-[$top, $footer] = $S->getPageTopBottom($h, $b);
+[$top, $footer] = $S->getPageTopBottom();
 
 // Display Page
 
@@ -185,7 +191,7 @@ Enter Something: <input type="text" name="subject"><br>
 <p>FORM 2</p>
 <form action="test" method="post">
 <table border="1">
-<tr><td>Subject</td><td><input type="text" name="subject2"></td></tr>
+<tr><td>Subject</td><td><input type="text" name="subject"></td></tr>
 <tr><td>Name</td><td><input type="text" name="name"></td></tr>
 </table>
 <input type="submit" value="Submit">

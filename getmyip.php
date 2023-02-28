@@ -14,10 +14,10 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new SiteClass($_site);
 
-$h->preheadcomment = "<!-- Part of AltoRouter Demo. Using SiteClass -->";
-$h->title = "Get Ip";
-$h->banner = "<h1>Get My Ip</h1>";
-[$top, $footer] = $S->getPageTopBottom($h);
+$S->preheadcomment = "<!-- Part of AltoRouter Demo. Using SiteClass -->";
+$S->title = "Get Ip";
+$S->banner = "<h1>Get My Ip</h1>";
+[$top, $footer] = $S->getPageTopBottom();
 
 $ip = $_SERVER['REMOTE_ADDR'];
 echo <<<EOF

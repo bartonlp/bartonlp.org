@@ -14,11 +14,11 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new SiteClass($_site);
 
-$h->preheadcomment = "<!-- Part of AltoRoute Demo -->";
-$h->title = 'Find User Demo';
-$h->banner = "<h1>$h->title</h1>";
+$S->preheadcomment = "<!-- Part of AltoRoute Demo -->";
+$S->title = 'Find User Demo';
+$S->banner = "<h1>$S->title</h1>";
 
-[$top, $footer] = $S->getPageTopBottom($h);
+[$top, $footer] = $S->getPageTopBottom();
 
 $users = [['Barton', 1], ['Bonnie', 2]];
 

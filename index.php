@@ -14,16 +14,13 @@
 $_site = require_once(getenv("SITELOADNAME"));
 $S = new SiteClass($_site);
 
-//$h = new stdClass;
-
-
 // preheadcomment goes before DOCTYPE.
-$h->preheadcomment = <<<EOF
+$S->preheadcomment = <<<EOF
 <!-- This is bartonlp.org at /var/www/html -->
 <!-- This uses AltoRouter. https://github.com/dannyvankooten/AltoRouter -->
 EOF;
 
-$h->css = <<<EOF
+$S->css = <<<EOF
 .item { text-align: center; }
 /* This is like <hr> */
 .item::after {
@@ -53,14 +50,14 @@ $h->css = <<<EOF
 }
 EOF;  
 
-$h->script =<<<EOF
+$S->h_script =<<<EOF
   <script src="https://bartonphillips.net/js/ximage.js"></script>
   <script>dobanner("PhotosFromHPenvy/BonnieAndMe/*.png", "Bonnie & Me", {recursive: 'no', size: '100', mode: "rand"});</script>
 EOF;
 
-$h->banner = "<h1>Something New</h1>";
+$S->banner = "<h1>Something New</h1>";
 
-[$top, $footer] = $S->getPageTopBottom($h);
+[$top, $footer] = $S->getPageTopBottom();
 
 echo <<<EOF
 $top
