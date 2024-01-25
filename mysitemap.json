@@ -48,22 +48,22 @@
  */
 {
   "siteDomain": "bartonlp.org", // Our domain name
-  "siteName": "BartonlpOrg", // this is the site name that will be used in analysis
+  "siteName": "Baronlp.org", // this is the site name that will be used in analysis
   "title": "Bartonlp.org", // the title used in head.i.php 
-  "mainTitle": "<h1>Home of <b>bartonlp.org</b></h1>", // could be used in banner.i.php
-  "path": "/var/www/html", 
+  "mainTitle": "<h1>Bartonlp.org</b></h1>", // could be used in banner.i.php
+  "path": "/var/www/bartonlp.org", 
   "className": "SiteClass", // the default is SiteClass. If this is something else that class will be used.
   "copyright": "Barton Phillips", // copyright holder
   "author": "Barton Phillips",
   "address": "New Bern, North Carolina",
   "desc": "My interesting new site", // could be used in the meta description.
-  "keywords": "c,c++,javascript,php,mysql", // could be used in the meta keywords.
+  //"keywords": "c,c++,javascript,php,mysql", // could be used in the meta keywords.
   "masterdb": "barton", // the master database where all of the SiteClass tracking and counting info goes.
   "dbinfo": { // IF you have this then you will use the database facilities of SiteClass
     "host": "localhost",
     "user": "barton",
     "database": "bartonphillips", // we will use bartonphillips because it has the members table.
-    "engine": "mysqli" // the engine to use
+    "engine": "mysql" // Not used by dbMysqli.class.php. It is only used with dbPdo.class.php
   },
   "errorMode": {
     "development": true, // development automatically sets email to true.

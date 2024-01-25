@@ -12,6 +12,8 @@
 // Get it at https://github.com/dannyvankooten/AltoRouter
 
 $_site = require_once(getenv("SITELOADNAME"));
+ErrorClass::setDevelopment(true);
+
 $S = new SiteClass($_site);
 
 // preheadcomment goes before DOCTYPE.
