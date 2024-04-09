@@ -62,7 +62,7 @@
   "dbinfo": { // IF you have this then you will use the database facilities of SiteClass
     "host": "localhost",
     "user": "barton",
-    "database": "bartonphillips", // we will use bartonphillips because it has the members table.
+    "database": "barton", //"bartonphillips", // we will use bartonphillips because it has the members table.
     "engine": "mysql" // Not used by dbMysqli.class.php. It is only used with dbPdo.class.php
   },
   "errorMode": {

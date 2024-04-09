@@ -18,9 +18,14 @@
 // The <form> items will replace the page thus removing anything that was there.
 // the Ajax items do not refresh the page so what was there remains.
 
+error_log("Start");
 $_site = require_once(getenv("SITELOADNAME"));
-$S = new SiteClass($_site);
+vardump("site", $_site);
 
+ErrorClass::setDevelopment(true);
+$S = new SiteClass($_site);
+error_log("From test.php");
+exit();
 $S->title = "Part of AltoRouter Demo";
 $S->banner = "<h1>$S->title</h1>";
 $S->preheadcomment = "<!-- Using AltoRouter. Using SiteClass -->";

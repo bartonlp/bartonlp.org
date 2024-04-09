@@ -28,6 +28,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . altorouter.php [L]
 # END RewriteRules
 
+<IfModule mod_expires.c>
 # BEGIN EXPIRES
   ExpiresActive On
 <Files *.php>
@@ -87,3 +88,4 @@ AddOutputFilterByType DEFLATE \
   "image/png" \
   "image/jpg" \
   "image/gif" 
+</IfModule>

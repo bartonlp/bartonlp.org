@@ -12,9 +12,10 @@
 // Get it at https://github.com/dannyvankooten/AltoRouter
 
 $_site = require_once(getenv("SITELOADNAME"));
-ErrorClass::setDevelopment(true);
+$_site->nodb = true;
+SimpleErrorClass::setDevelopment(true);
 
-$S = new SiteClass($_site);
+$S = new SimpleSiteClass($_site);
 
 // preheadcomment goes before DOCTYPE.
 $S->preheadcomment = <<<EOF
@@ -59,13 +60,14 @@ EOF;
 
 $S->banner = "<h1>Something New</h1>";
 
+$class = "{$S->__toString()} {$S->getVersion()} engine={$S->dbinfo->engine}, PHP Version: " . PHP_VERSION;
 [$top, $footer] = $S->getPageTopBottom();
 
 echo <<<EOF
 $top
 <div class="item">
 <h3>This file is at <b>/var/www/html</b></h3>
-
+<p>$class</p>
 <div class="desktop">We think you are using a mouse as your pointer device.</div>
 <div class="phone">We think you are using a phone or tablet with a touch screen.</div>
 <div>Our main Home Page is at <a href="https://www.bartonphillips.com">www.bartonphillips.com</a> Please visit us there.</div>.
