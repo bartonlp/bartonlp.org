@@ -11,6 +11,8 @@
 // Get it with 'composer require altorouter/altorouter'
 // Get it at https://github.com/dannyvankooten/AltoRouter
 
+// This require will load the information from mysitemap.json and redo the vendor/autoload.php.
+
 $_site = require_once(getenv("SITELOADNAME"));
 ErrorClass::setDevelopment(true);
 $S = new SiteClass($_site);

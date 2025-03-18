@@ -13,42 +13,59 @@
 // https://github.com/pug-php/pug
 // 'composer require pug-php/pug:^3.0'
 
-// This file DOES NOT DO a require_onece(getenv("SITELOADNAME") or set $S.
-// The $router->map() functions can do it to set up $_site.
+// This file DOES NOT DO a require_onece getenv("SITELOADNAME"); or set $S.
+// The $router->map() functions can do it via the require(...) to set up $_site etc.
+
+// Do the standard autoload.php from vendor. Not via SITELOADNAME!
+// The standard composer autoload.php will load all of the classes.
 
 require_once("/var/www/vendor/autoload.php");
 
 $router = new AltoRouter();
 
-// Do Routing
+// GET routines.
+
+// Get my index.php
 
 $router->map('GET', '/', function() {
   require('index.php');
 });
 
+// Get my getmyip.php
+
 $router->map('GET', '/getip', function() {
   require('getmyip.php');
 });
+
+// Get my contact.php
 
 $router->map('GET', '/contactus', function() {
   $subject = "NO INFO PASSED";
   require("contact.php");
 });
-          
+
+// Get my contact.php with $subject
+
 $router->map('GET', '/contactus/[a:subject]', function($y) {
   $subject = urldecode($y['subject']);
   require("contact.php");
 });
 
+// Get my selectIt.php. This has all of the GET and POST logic. See selectIt.php
+
 $router->map('GET', '/test', function() {
   require("selectIt.php"); 
 });
+
+// This GET just echos the text with my $subject
 
 $router->map('GET', '/test/[*:subject]', function($y) {
   //$data = file_get_contents("php://input");
   $subject = urldecode($y['subject']);
   echo "<h1>This is test</h1><p>{$subject}</p>";
 });
+
+// This GET echos the text from subject and name.
 
 $router->map('GET', '/test/[*:subject]/[*:name]', function($y) {
   //$data = file_get_contents("php://input");
@@ -57,7 +74,7 @@ $router->map('GET', '/test/[*:subject]/[*:name]', function($y) {
   echo "<h1>This is test</h1><p>{$subject}, {$name}</p>";
 });
 
-// GET. If you enter https://bartonlp.org/{name}/{id} at the location bar
+// This GET passes name and id to my finduser.php.
 
 $router->map('GET', '/finduser/[a:name]/[i:id]', function($x) {
   $name = $x['name'];
@@ -65,7 +82,9 @@ $router->map('GET', '/finduser/[a:name]/[i:id]', function($x) {
   require("finduser.php");
 });
 
-// POSTS
+// POST routines
+
+// If a <form> post or an AJAX post. Pass name and extra to my helper1.php
 
 $router->map('POST', '/test', function() {
   $name = $_POST['name'];
@@ -74,7 +93,8 @@ $router->map('POST', '/test', function() {
   require("helper1.php");
 });
 
-// POST test/{subject}
+// If a <form> or an AJAX post.
+// Pass name and extra, or name and php://input extra to my helper1.php
 // This works with either 'Content-Type': 'application/json' or
 // 'Content-Type': 'application/x-www-form-urlencoded'
 // body: JSON.stringify({name: "what is this"}) or
@@ -92,8 +112,7 @@ $router->map('POST', '/test/[a:subject]', function($x) {
 
 // POST finduser. If via 'test' (test.php) then we will get the values from $_POST.
 // If we run this from the command line via curl:
-// curl -d '{"name":"Barton", "id": 1}' -H 'Content-Type: application/json'\
-//   https://bartonlp.org/finduser
+// curl -d '{"name":"Barton", "id": 1}' -H 'Content-Type: application/json' https://bartonlp.org/finduser
 // Then the information is from php://input.
 // If we run this from the command line via curl:
 // curl -d "name=Barton&id=1" https://bartonlp.org/findus
@@ -116,11 +135,23 @@ $router->map('POST', '/finduser', function() {
   require('finduser.php');
 });
 
+// Match request against $router_map(...) entries.
+// This returns $match which has target, param and name.
+
+
 $match = $router->match();
 
+// If we found a match with one of the above $router->map entries and if the match is callable then
+// we execute the match with the params.
+// If no match output error information.
+
 if(is_array($match) && is_callable($match['target'])) {
+  // Yes we found it so lets exicute it.
+  
   call_user_func($match['target'], $match['params']);
 } else {
+  // We did not find a match so send a 404 header and then echo the information.
+  
   header("HTTP/1.0 404 Not Found");
   echo <<<EOF
 <!-- AltoRouter Demo -->
