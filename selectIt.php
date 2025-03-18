@@ -117,7 +117,9 @@ $("#fetchit").on("click", function() {
     let iframe = document.querySelector("#fetchithere iframe");
     iframe.srcdoc = data;
   })
-  .catch(err => console.log(`ERR: ${err}`));
+  .catch(err => {
+    console.log(`ERR: ${err}`);
+  });
 });
 EOF;
 

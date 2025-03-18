@@ -100,7 +100,7 @@ $router->map('POST', '/test', function() {
 // body: JSON.stringify({name: "what is this"}) or
 // body: "name=what is this"
 
-$router->map('POST', '/test/[a:subject]', function($x) {
+$router->map('POST', '/test/[a:sub]', function($x) {
   $name = urldecode($x['sub']);
   $extra = $_POST['extra'];
   if(!$extra) {

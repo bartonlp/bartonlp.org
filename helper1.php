@@ -22,6 +22,7 @@ EOF;
 echo <<<EOF
 $top
 <h1>Helper1</h1>
+$title
 <div>$name</div>
 <div>$extra</div>
 <div id='show'></div>
