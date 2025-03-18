@@ -81,8 +81,8 @@ $("#postit").on("click", function() {
   let stuff = $("#post").val();
 
   $.ajax({
-    url: `test/\${stuff}`,
-    data: {extra: "JavaScript added 'WhatTheHell'"}, // I can pass data up in addition to stuff
+    url: 'test',
+    data: {name: stuff, extra: "JavaScript added 'WhatTheHell'"}, // I can pass data up in addition to stuff
     type: "post",
     success: function(data) {
       //$("#postithere").html(data);
