@@ -9,8 +9,6 @@ Require all granted
 Header set Access-Control-Allow-Origin *
 SetEnv SITELOADNAME /var/www/vendor/bartonlp/site-class/includes/siteload.php
 setEnv SITECLASS_DIR /var/www/vendor/bartonlp/site-class/includes
-# SendGrid Email Key
-SetEnv SENDGRID_API_KEY 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
 
 # BEGIN RewriteRules
 # 11/3/10 hack attempts
