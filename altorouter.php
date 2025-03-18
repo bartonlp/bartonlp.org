@@ -41,7 +41,7 @@ $router->map('GET', '/contactus/[a:subject]', function($y) {
 });
 
 $router->map('GET', '/test', function() {
-  require("test.php");
+  require("selectIt.php"); 
 });
 
 $router->map('GET', '/test/[*:subject]', function($y) {
@@ -68,10 +68,10 @@ $router->map('GET', '/finduser/[a:name]/[i:id]', function($x) {
 // POSTS
 
 $router->map('POST', '/test', function() {
-  $subject = $_POST['subject'];
   $name = $_POST['name'];
+  $extra = $_POST['extra'];
   //$title = "<h1>Hi There</h1>";
-  require("test2.php");
+  require("helper1.php");
 });
 
 // POST test/{subject}
@@ -80,12 +80,14 @@ $router->map('POST', '/test', function() {
 // body: JSON.stringify({name: "what is this"}) or
 // body: "name=what is this"
 
-$router->map('POST', '/test/[*:sub]', function($x) {
-  $subject = urldecode($x['sub']);
-  $extra = json_decode(file_get_contents("php://input"));
-  if($extra->name) $subject .= ", $extra->name";
+$router->map('POST', '/test/[a:subject]', function($x) {
+  $name = urldecode($x['sub']);
+  $extra = $_POST['extra'];
+  if(!$extra) {
+    $extra = json_decode(file_get_contents("php://input"))->extra;
+  }
   $title = "<h1>Hi There</h1>";
-  require("test2.php");
+  require("helper1.php");
 });
 
 // POST finduser. If via 'test' (test.php) then we will get the values from $_POST.

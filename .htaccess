@@ -9,6 +9,8 @@ Require all granted
 Header set Access-Control-Allow-Origin *
 SetEnv SITELOADNAME /var/www/vendor/bartonlp/site-class/includes/siteload.php
 setEnv SITECLASS_DIR /var/www/vendor/bartonlp/site-class/includes
+# SendGrid Email Key
+SetEnv SENDGRID_API_KEY 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
 
 # BEGIN RewriteRules
 # 11/3/10 hack attempts
@@ -18,8 +20,12 @@ RewriteRule ^robots\.txt$ robots.php [L,NC]
 RewriteRule ^Sitemap\.xml$ sitemap.php [L,NC]
 # rewrite the address of csstest.css to tracker.php?csstest
 RewriteRule ^csstest-(.*)\.css$ https://bartonlp.com/otherpages/tracker.php?id=$1&page=csstest [L,QSA]
+
+# BLP 2024-05-03 - removed RewriteRule "^mysitemap\.json" - [F,L]
+# I need to let file_get_contents() see mysitemap.json so this must be commented out so
+# webstats.php will work.
 # Don't let people look at mysitemap.json
-RewriteRule "^mysitemap\.json$" - [F,L]
+#RewriteRule "^mysitemap\.json$" - [F,L]
 
 # This group is for altorouter. The first rewrite is so '/' goes to altorouter.
 RewriteRule ^$ altorouter.php [L]

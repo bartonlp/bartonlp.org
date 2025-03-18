@@ -1,13 +1,8 @@
 <?php
+// When you run https://bartonlp.org it is routed through autorouter.php. See autorouter.php.
 // This Demo goes with the altorouter.php and the AltoRouter class.
-// The file getmyip.php, contact.php.
-// To get to getmyip.php enter '/getip'.
-// To get to contact.php enter '/contactus/{a single name}' like '/contact/Barton'
-//
 // To make altorouter work you need to add the following to the .htaccess
-//  # This group is for altorouter. The first rewrite is so '/' goes to altorouter.
 //  RewriteRule ^$ altorouter.php [L]
-//  # Then everything that isn't a file, line /test goes to altorouter.
 //  RewriteRule ^$ altorouter.php [L]
 //  RewriteCond %{REQUEST_FILENAME} !-f
 //  RewriteRule . altorouter.php [L]
@@ -15,20 +10,16 @@
 // composer require altorouter/altorouter
 // https://github.com/dannyvankooten/AltoRouter
 //
-// The <form> items will replace the page thus removing anything that was there.
-// the Ajax items do not refresh the page so what was there remains.
 
-error_log("Start");
 $_site = require_once(getenv("SITELOADNAME"));
-vardump("site", $_site);
-
 ErrorClass::setDevelopment(true);
 $S = new SiteClass($_site);
-error_log("From test.php");
-exit();
+
 $S->title = "Part of AltoRouter Demo";
 $S->banner = "<h1>$S->title</h1>";
 $S->preheadcomment = "<!-- Using AltoRouter. Using SiteClass -->";
+
+// The JavaScript does a lot of the work.
 
 $S->b_inlineScript = <<<EOF
 // Show source button
@@ -91,7 +82,7 @@ $("#postit").on("click", function() {
 
   $.ajax({
     url: `test/\${stuff}`,
-    data: {junk: "WhatTheHell"}, // I can pass data up in addition to stuff
+    data: {extra: "JavaScript added 'WhatTheHell'"}, // I can pass data up in addition to stuff
     type: "post",
     success: function(data) {
       //$("#postithere").html(data);
@@ -116,7 +107,7 @@ $("#fetchit").on("click", function() {
       'Content-Type': 'application/json'
       //'Content-Type': 'application/x-www-form-urlencoded'
     },
-    body: JSON.stringify({name: "what is this"})
+    body: JSON.stringify({extra: "JavaScript added this little bit 'what is this'"})
     //body: "name=what is this"
   })
   .then(data => data.text())
@@ -144,7 +135,7 @@ $S->h_script =<<<EOF
 <link rel='stylesheet' href="https://bartonphillips.net/css/theme.css">
 EOF;
 
-$file = escapeltgt(file_get_contents("test.php"));
+$file = escapeltgt(file_get_contents("helper2.php"));
 $altofile = escapeltgt(file_get_contents("altorouter.php"));
 
 [$top, $footer] = $S->getPageTopBottom();
@@ -162,7 +153,7 @@ $top
 <div>
 <button id="but1">Display this File</button>
 <div id="fileinfo">
-<p><b>test.php</b></p>
+<p><b>helper2.php</b></p>
 <pre class='brush: php'>
 $file
 </pre>
@@ -179,16 +170,16 @@ $altofile
 </div>
 </div>
 
-<!-- Link to 'test.php?subject=Barton' -->
-<p><a href="/test/Barton">This is a TEST link</a></p>
+<!-- Link to 'helper1.php?subject=Barton' -->
+<p><a href="/test/Barton">This is a TEST link (/test/Barton. This is like helper1.php?subject=Barton)</a></p>
 <!-- First Form -->
 <div class="border">
 <p>FORM 1</p>
 <form action="test" method="post">
-Enter Something: <input type="text" name="subject"><br>
+Enter Something: <input type="text" name="name"><br>
 <input type="submit" value="Submit">
 </form>
-<div id="form1">$subject</div>
+<div id="form1">$name</div>
 </div>
 
 <!-- Second Form -->
@@ -196,12 +187,12 @@ Enter Something: <input type="text" name="subject"><br>
 <p>FORM 2</p>
 <form action="test" method="post">
 <table border="1">
-<tr><td>Subject</td><td><input type="text" name="subject"></td></tr>
 <tr><td>Name</td><td><input type="text" name="name"></td></tr>
+<tr><td>Message</td><td><input type="text" name="extra"></td></tr>
 </table>
 <input type="submit" value="Submit">
 </form>
-<div id="form2">$subject2 $name</div>
+<div id="form2">$name $extra</div>
 </div>
 
 <!-- Third Form -->

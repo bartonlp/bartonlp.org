@@ -12,10 +12,8 @@
 // Get it at https://github.com/dannyvankooten/AltoRouter
 
 $_site = require_once(getenv("SITELOADNAME"));
-$_site->nodb = true;
-SimpleErrorClass::setDevelopment(true);
-
-$S = new SimpleSiteClass($_site);
+ErrorClass::setDevelopment(true);
+$S = new SiteClass($_site);
 
 // preheadcomment goes before DOCTYPE.
 $S->preheadcomment = <<<EOF
@@ -54,14 +52,16 @@ $S->css = <<<EOF
 EOF;  
 
 $S->h_script =<<<EOF
-  <script src="https://bartonphillips.net/js/ximage.js"></script>
-  <script>dobanner("PhotosFromHPenvy/BonnieAndMe/*.png", "Bonnie & Me", {recursive: 'no', size: '100', mode: "rand"});</script>
+  <script src="/ximage.js"></script>
+  <script>dobanner("images/*.png", "Bonnie & Me", {recursive: 'no', size: '100', mode: "rand"});</script>
 EOF;
 
 $S->banner = "<h1>Something New</h1>";
 
-$class = "{$S->__toString()} {$S->getVersion()} engine={$S->dbinfo->engine}, PHP Version: " . PHP_VERSION;
-[$top, $footer] = $S->getPageTopBottom();
+$class = "{$S->__toString()} Version: {$S->getVersion()}, engine={$S->dbinfo->engine}, PHP Version: " . PHP_VERSION;
+
+[$top, $bottom] = $S->getPageTopBottom();
+//error_log("bartonlp.org index: $top");
 
 echo <<<EOF
 $top
@@ -76,6 +76,6 @@ There are several pages you can also try from the locatin bar: <b>/getip</b>, <b
 There are two names and ids in the database they are: <b>Barton</b> with id <b>1</b> and <b>Bonnie</b> with id <b>2</b>.</p>
 </div>
 <div id="show"></div>
-$footer
+$bottom
 EOF;
 
